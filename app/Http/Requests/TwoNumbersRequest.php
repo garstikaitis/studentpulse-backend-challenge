@@ -24,10 +24,24 @@ class TwoNumbersRequest extends FormRequest
      */
     public function rules()
     {
-        // @TODO: implement numbers validation
         return [
-
+            'a' => 'required|numeric',
+            'b' => 'required|numeric'
         ];
     }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'a.required' => 'The a is required.',
+            'b.required' => 'The b is required.',
+            'a.numeric' => 'The a must be a number.',
+            'b.numeric' => 'The b must be a number.'
+        ];
+    }
 }

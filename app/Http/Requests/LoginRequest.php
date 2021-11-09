@@ -23,7 +23,17 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        // @TODO: add login rules validation
-        return [];
+        return [
+            'email' => 'required',
+            'password' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'The email is required.',
+            'password.required' => 'The password is required.'
+        ];
     }
 }

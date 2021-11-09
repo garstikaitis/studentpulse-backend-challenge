@@ -2,32 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use Throwable;
-use App\Traits\UserValidation;
 use App\Http\Requests\TwoNumbersRequest;
 
 class CalculatorController extends Controller
 {
-    use UserValidation;
     public function addTwoNumbers(TwoNumbersRequest $request) {
-        // @TODO: implement add two numbers logic
-        // @TODO: implement user validation. Could also be middleware
+        $a = $request['a'];
+        $b = $request['b'];
+        $result = $a + $b;
+        return response()->json(['success' => true, 'data' => $result]);
     }
 
     public function subtractTwoNumbers(TwoNumbersRequest $request) {
-        // @TODO: implement subtract two numbers logic
-        // @TODO: implement user validation. Could also be middleware
+        $a = $request['a'];
+        $b = $request['b'];
+        $result = $a - $b;
+        return response()->json(['success' => true, 'data' => $result]);
     }
 
     public function multiplyTwoNumbers(TwoNumbersRequest $request) {
-        // @TODO: implement multiply two numbers logic
-        // @TODO: implement user validation. Could also be middleware
+        $a = $request['a'];
+        $b = $request['b'];
+        $result = $a * $b;
+        return response()->json(['success' => true, 'data' => $result]);
     }
 
     public function divideTwoNumbers(TwoNumbersRequest $request) {
-        // @TODO: implement divide two numbers logic
-        // @TODO: implement user validation. Could also be middleware
-        // @TODO: catch and handle division by zero exception
-        // @TODO: write a test to make sure division by zero is not possible
+        $a = $request['a'];
+        $b = $request['b'];
+        try {
+            $result = $a / $b;
+        } catch (\Exception $exception) { // Using generic exception because PHP 7 only throws DivisionByZeroError on integer division (intdiv or %)
+            return response()->json(['success' => false, 'message' => 'Division by zero']);
+        }
+        return response()->json(['success' => true, 'data' => $result]);
     }
 }

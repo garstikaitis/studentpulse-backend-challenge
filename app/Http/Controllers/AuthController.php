@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Traits\JWTToken;
 use Throwable;
@@ -40,16 +39,16 @@ class AuthController extends Controller
     {
         try {
             return response()->json([
-                'success' => true, 
+                'success' => true,
                 'data' => auth()->user()
             ]);
-            
+
         } catch(Throwable $e) {
-            
+
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
 
         }
-        
+
     }
 
     /**
@@ -67,12 +66,12 @@ class AuthController extends Controller
             }
 
             auth()->logout();
-                
+
             return response()->json(['success' => true, 'message' => 'Successfully logged out']);
         }
 
         catch(Throwable $e) {
-            
+
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
 
         }
@@ -87,5 +86,5 @@ class AuthController extends Controller
     {
         return $this->respondWithToken(auth()->refresh());
     }
-    
+
 }
