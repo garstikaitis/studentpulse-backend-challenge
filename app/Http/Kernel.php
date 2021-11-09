@@ -39,7 +39,6 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // @TODO: enable API throttling middleware
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],

@@ -49,9 +49,25 @@ class DivideTwoNumbersFeatureTest extends TestCase
 			->assertJson([
 				'errors' => [
 					'a' => [
-						'The a must be a number.'  
+						'The a must be a number.'
 					]
 				]
 			]);
+    }
+
+    public function test_fails_when_dividing_by_zero()
+    {
+        $this->createUser();
+        $route = route('divideTwoNumbers', [
+            'a' => 500,
+            'b' => 0
+        ]);
+
+        $this->actingAs($this->user)
+            ->json('POST', $route)
+            ->assertJson([
+                'success' => false,
+                'message' => 'Division by zero'
+                         ]);
     }
 }

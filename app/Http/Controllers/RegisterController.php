@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Traits\JWTToken;
 
